@@ -1,0 +1,3 @@
+1. complete select quries functions.
+2. run and test query functions.
+3. create function for select query with join.
