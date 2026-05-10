@@ -2,6 +2,7 @@
 const pool = require("../db/dbconnection")
 const bcrypt = require("bcrypt")
 const {insert,selectquery} = require("../utility/quries")
+const jwt = require("jsonwebtoken")
 
 // 🔐 REGISTER
 const registerUser = async (req, res) => {
@@ -112,10 +113,20 @@ const loginUser = async (req, res) => {
         message: "Invalid credentials"
       })
     }
-
+    const token= jwt.sign(
+      {
+        id:user.id,
+        role:user.role
+      },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn:"1d"
+      }
+    )
     res.json({
       success: true,
       message: "Login Successfully",
+      token,
       user: {
         id: user.id,
         name: user.name,
