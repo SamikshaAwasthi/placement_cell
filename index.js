@@ -32,14 +32,15 @@ initDB();
 
 
 const authRoutes = require("./Routes/auth.routes")
+const studentRoutes = require("./Routes/student.routes")
+const companyRoutes = require("./Routes/company.routes")
+
+app.use("/api/auth", authRoutes)
+app.use('/api/students',studentRoutes)
+app.use('/api/company',companyRoutes)
 app.get("/", (req,res)=>{
   res.send("API running")
 })
-const studentRoutes = require("./Routes/student.routes")
-
-app.use("/api/auth", authRoutes
-)
-app.use('/api/students',studentRoutes)
 app.listen(port,()=>{
     console.log(`server is running at port ${port}`)
 })

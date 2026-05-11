@@ -9,7 +9,31 @@ async function CreateCompaniesTable() {
         LOCATION VARCHAR(100)
         )     
  `)
- console.log("✅ companies table created")
+ await pool.query(`
+
+    ALTER TABLE companies
+
+    ADD COLUMN industry VARCHAR(100),
+
+    ADD COLUMN website VARCHAR(200),
+
+    ADD COLUMN hr_name VARCHAR(100),
+
+    ADD COLUMN hr_email VARCHAR(100),
+
+    ADD COLUMN contact_number VARCHAR(20),
+
+    ADD COLUMN package DECIMAL,
+
+    ADD COLUMN eligibility_cgpa DECIMAL,
+
+    ADD COLUMN description TEXT,
+
+    ADD COLUMN created_by INT REFERENCES users(id),
+
+    ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  `)
+ console.log("✅ companies table created/updated")
 }
 
 module.exports = CreateCompaniesTable
