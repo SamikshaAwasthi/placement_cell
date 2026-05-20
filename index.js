@@ -34,10 +34,11 @@ initDB();
 const authRoutes = require("./Routes/auth.routes")
 const studentRoutes = require("./Routes/student.routes")
 const companyRoutes = require("./Routes/company.routes")
-
+const jobRoutes = require("./Routes/job.routes")
 app.use("/api/auth", authRoutes)
 app.use('/api/students',studentRoutes)
 app.use('/api/company',companyRoutes)
+app.use('/api/job',jobRoutes)
 app.get("/", (req,res)=>{
   res.send("API running")
 })
